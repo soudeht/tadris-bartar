@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>فیکه یا کیکه - بررسی صحت اخبار با هوشنگ</title>
     <meta name="description" content="با هوشنگ، چت‌بات هوشمند بررسی اخبار، صحت اخبار رو بررسی کنید">
-    
+
     <!-- Fonts -->
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Core Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    
+
     <style>
-        :root {
+         :root {
             --electric-blue: #43a9dd;
             --neon-green: #00ff00;
             --bright-pink: #ff007f;
@@ -108,8 +109,14 @@
         }
         
         @keyframes typing {
-            0%, 60%, 100% { opacity: 0.3; }
-            30% { opacity: 1; }
+            0%,
+            60%,
+            100% {
+                opacity: 0.3;
+            }
+            30% {
+                opacity: 1;
+            }
         }
         
         .input-container {
@@ -200,6 +207,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 bg-black bg-opacity-80 backdrop-blur-md border-b border-gray-800">
@@ -218,7 +226,7 @@
             </div>
         </div>
     </nav>
-    
+
     <!-- Hero Section -->
     <section class="pt-24 pb-12">
         <div class="container mx-auto px-6 text-center">
@@ -233,7 +241,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Chat Section -->
     <section class="py-12">
         <div class="container mx-auto px-6">
@@ -244,29 +252,22 @@
                         <div id="chat-messages" class="chat-messages">
                             <div class="message bot">
                                 <div class="message-bubble">
-                                    👋 سلام! من هوشنگ هستم، چت‌بات بررسی صحت اخبار. 
-                                    لطفاً لینک یا متن خبری رو که می‌خوای بررسی کنم برام بفرست.
+                                    👋 سلام! من هوشنگ هستم، چت‌بات بررسی صحت اخبار. لطفاً لینک یا متن خبری رو که می‌خوای بررسی کنم برام بفرست.
                                 </div>
                             </div>
-                            
-                            <div class="typing-indicator" id="typing-indicator">
-                                <span class="typing-dots">هوشنگ در حال تایپ کردن...</span>
-                            </div>
+
+
                         </div>
-                        
+
                         <!-- Input Container -->
                         <div class="input-container relative">
-                            <input 
-                                type="text" 
-                                id="message-input" 
-                                class="message-input pr-4" 
-                                placeholder="لینک یا متن خبر رو اینجا بنویس..."
-                                onkeypress="handleKeyPress(event)"
-                            >
+                            <input type="text" id="message-input" class="message-input pr-4" placeholder="لینک یا متن خبر رو اینجا بنویس..." onkeypress="handleKeyPress(event)">
                             <button onclick="sendMessage()" class="send-button">
+                                <div class="typing-indicator" id="typing-indicator">
+                                    <span class="typing-dots">بزودی این بخش فعال خواهد شد</span>
+                                </div> 
                                 <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
-                                </svg>
+                                                                   </svg>
                             </button>
                         </div>
                     </div>
@@ -274,7 +275,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Tips Section -->
     <section class="py-20">
         <div class="container mx-auto px-6">
@@ -286,7 +287,7 @@
                     قبل از استفاده از هوشنگ، این نکات رو هم در نظر بگیرید
                 </p>
             </div>
-            
+
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="verification-result reveal-up">
                     <div class="text-4xl mb-4">🔗</div>
@@ -297,7 +298,7 @@
                         منبع خبر رو بررسی کنید. آیا از خبرگزاری معتبره؟ آیا سابقه درستی داره؟
                     </p>
                 </div>
-                
+
                 <div class="verification-result reveal-up">
                     <div class="text-4xl mb-4">📅</div>
                     <h3 class="text-xl font-bold mb-3 neon-text" style="color: var(--bright-pink);">
@@ -307,7 +308,7 @@
                         تاریخ انتشار خبر رو چک کنید. خبرهای قدیمی رو نباید به عنوان خبر جدید قبول کرد.
                     </p>
                 </div>
-                
+
                 <div class="verification-result reveal-up">
                     <div class="text-4xl mb-4">🔍</div>
                     <h3 class="text-xl font-bold mb-3 neon-text" style="color: var(--bright-pink);">
@@ -317,7 +318,7 @@
                         بخشی از متن خبر رو کپی و در موتور جستجو سرچ کنید تا ببینید منابع دیگه هم اون رو منتشر کردن.
                     </p>
                 </div>
-                
+
                 <div class="verification-result reveal-up">
                     <div class="text-4xl mb-4">🎭</div>
                     <h3 class="text-xl font-bold mb-3 neon-text" style="color: var(--bright-pink);">
@@ -327,7 +328,7 @@
                         تصاویر خبر رو بررسی کنید. آیا واقعی هستن؟ یا از جاهای دیگه برداشتن شده؟
                     </p>
                 </div>
-                
+
                 <div class="verification-result reveal-up">
                     <div class="text-4xl mb-4">⚖️</div>
                     <h3 class="text-xl font-bold mb-3 neon-text" style="color: var(--bright-pink);">
@@ -337,7 +338,7 @@
                         از منابع مختلف اطلاعات بگیرید و دیدگاه‌های مختلف رو بررسی کنید.
                     </p>
                 </div>
-                
+
                 <div class="verification-result reveal-up">
                     <div class="text-4xl mb-4">🤔</div>
                     <h3 class="text-xl font-bold mb-3 neon-text" style="color: var(--bright-pink);">
@@ -350,7 +351,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Footer -->
     <footer class="bg-gray-900 py-12 border-t border-gray-800">
         <div class="container mx-auto px-6 text-center">
@@ -370,11 +371,11 @@
             </div>
         </div>
     </footer>
-    
+
     <script>
         // Chat functionality
         let isTyping = false;
-        
+
         // Sample news database for verification
         const newsDatabase = {
             'fake': [
@@ -392,40 +393,40 @@
                 'افزایش صادرات غیرنفتی ایران به کشورهای همسایه'
             ]
         };
-        
+
         // Initialize chat
         function initializeChat() {
             initializeScrollReveal();
             focusInput();
         }
-        
+
         // Handle Enter key press
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
                 sendMessage();
             }
         }
-        
+
         // Send message
         function sendMessage() {
             const input = document.getElementById('message-input');
             const message = input.value.trim();
-            
+
             if (!message || isTyping) return;
-            
+
             // Add user message
             addMessage(message, 'user');
             input.value = '';
-            
+
             // Show typing indicator
             showTypingIndicator();
-            
+
             // Simulate bot response
             setTimeout(() => {
                 const response = generateBotResponse(message);
                 hideTypingIndicator();
                 addMessage(response.text, 'bot', response.type);
-                
+
                 if (response.type === 'verification') {
                     setTimeout(() => {
                         showVerificationResult(message, response);
@@ -433,13 +434,13 @@
                 }
             }, 2000);
         }
-        
+
         // Add message to chat
         function addMessage(text, sender, type = 'text') {
             const chatMessages = document.getElementById('chat-messages');
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${sender}`;
-            
+
             if (type === 'verification') {
                 messageDiv.innerHTML = text;
             } else {
@@ -449,19 +450,19 @@
                     </div>
                 `;
             }
-            
+
             // Insert before typing indicator
             const typingIndicator = document.getElementById('typing-indicator');
             chatMessages.insertBefore(messageDiv, typingIndicator);
-            
+
             // Scroll to bottom
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
-        
+
         // Generate bot response
         function generateBotResponse(message) {
             const lowerMessage = message.toLowerCase();
-            
+
             // Check if it's a URL
             if (lowerMessage.includes('http') || lowerMessage.includes('www')) {
                 return {
@@ -472,7 +473,7 @@
                     type: 'verification'
                 };
             }
-            
+
             // Check if it's a news text
             if (lowerMessage.length > 20) {
                 return {
@@ -483,7 +484,7 @@
                     type: 'verification'
                 };
             }
-            
+
             // Simple conversation
             if (lowerMessage.includes('سلام') || lowerMessage.includes('hi')) {
                 return {
@@ -491,26 +492,26 @@
                     type: 'text'
                 };
             }
-            
+
             if (lowerMessage.includes('ممنون') || lowerMessage.includes('تشکر')) {
                 return {
                     text: 'خواهش می‌کنم! خوشحالم که کمک کردم. هر خبر دیگه‌ای داشتید، حتماً بفرستید.',
                     type: 'text'
                 };
             }
-            
+
             // Default response
             return {
                 text: 'لطفاً لینک یا متن خبری رو که می‌خواید بررسی کنم برام بفرستید. من می‌تونم صحت اون رو بررسی کنم.',
                 type: 'text'
             };
         }
-        
+
         // Show verification result
         function showVerificationResult(message, response) {
             const isFake = checkIfFakeNews(message);
             const confidence = Math.floor(Math.random() * 20) + 80; // 80-99%
-            
+
             let resultHtml = `
                 <div class="verification-result">
                     <h3 class="text-xl font-bold mb-4 neon-text" style="color: var(--bright-pink);">
@@ -540,64 +541,64 @@
                     </div>
                 </div>
             `;
-            
+
             addMessage(resultHtml, 'bot', 'verification');
         }
-        
+
         // Check if news is fake (simplified logic)
         function checkIfFakeNews(message) {
             const fakeKeywords = [
                 'معجزه', 'شوک', 'باورنکردنی', 'فوق‌العاده', 'انفجاری',
                 'تصادف', 'مرگ', 'قتل', 'جنگ', 'بحران'
             ];
-            
+
             const realKeywords = [
                 'گزارش', 'آمار', 'تحقیق', 'مطالعه', 'بررسی',
                 'افزایش', 'کاهش', 'رشد', 'توسعه'
             ];
-            
+
             let fakeScore = 0;
             let realScore = 0;
-            
+
             fakeKeywords.forEach(keyword => {
                 if (message.toLowerCase().includes(keyword.toLowerCase())) {
                     fakeScore++;
                 }
             });
-            
+
             realKeywords.forEach(keyword => {
                 if (message.toLowerCase().includes(keyword.toLowerCase())) {
                     realScore++;
                 }
             });
-            
+
             return fakeScore > realScore;
         }
-        
+
         // Show typing indicator
         function showTypingIndicator() {
             isTyping = true;
             document.getElementById('typing-indicator').style.display = 'block';
-            
+
             const chatMessages = document.getElementById('chat-messages');
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
-        
+
         // Hide typing indicator
         function hideTypingIndicator() {
             isTyping = false;
             document.getElementById('typing-indicator').style.display = 'none';
         }
-        
+
         // Focus input
         function focusInput() {
             document.getElementById('message-input').focus();
         }
-        
+
         // Initialize scroll reveal
         function initializeScrollReveal() {
             const revealElements = document.querySelectorAll('.reveal-up');
-            
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -608,14 +609,15 @@
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
             });
-            
+
             revealElements.forEach(element => {
                 observer.observe(element);
             });
         }
-        
+
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', initializeChat);
     </script>
 </body>
+
 </html>
