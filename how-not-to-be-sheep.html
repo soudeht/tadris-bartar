@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>چگونه گوسفند نباشیم - آموزش تفکر نقاد</title>
+    <meta name="description" content="یاد بگیرید چطور تفکر نقاد داشته باشید و تحت تأثیر تبلیغات و اخبار جعلی قرار نگیرید">
+    
+    <!-- Fonts -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    
+    <style>
+        :root {
+            --electric-blue: #43a9dd;
+            --neon-green: #00ff00;
+            --bright-pink: #ff007f;
+            --gen-z-yellow: #f7d000;
+            --dark-bg: #0a0a0a;
+            --text-light: #ffffff;
+        }
+        
+        * {
+            font-family: 'Vazir', 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+        
+        .neon-glow {
+            box-shadow: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 60px currentColor;
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+        }
+        
+        .quiz-container {
+            background: rgba(0, 255, 0, 0.05);
+            border: 1px solid var(--neon-green);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .question-card {
+            background: rgba(67, 169, 221, 0.05);
+            border: 1px solid var(--electric-blue);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .option-button {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .option-button:hover {
+            background: rgba(0, 255, 0, 0.1);
+            border-color: var(--neon-green);
+        }
+        
+        .option-button.selected {
+            background: rgba(0, 255, 0, 0.2);
+            border-color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+        }
+        
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, var(--electric-blue), var(--neon-green));
+            height: 100%;
+            transition: width 0.5s ease;
+        }
+        
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal-up.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black bg-opacity-80 backdrop-blur-md border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold neon-text" style="color: var(--gen-z-yellow);">
+                    <a href="index.html">گوسفند یا چوپان</a>
+                </div>
+                <div class="hidden md:flex space-x-8 space-x-reverse">
+                    <a href="index.html" class="text-white hover:text-yellow-400 transition-colors">صفحه اصلی</a>
+                    <a href="how-not-to-be-sheep.html" class="text-neon-green border-b-2 border-neon-green">چگونه گوسفند نباشیم</a>
+                    <a href="fake-or-real.html" class="text-white hover:text-yellow-400 transition-colors">فیکه یا کیکه</a>
+                    <a href="stories.html" class="text-white hover:text-yellow-400 transition-colors">قصه جوانان</a>
+                    <a href="about.html" class="text-white hover:text-yellow-400 transition-colors">درباره ما</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="pt-24 pb-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="reveal-up">
+                <img src="critical-thinking-brain.jpg" alt="تفکر نقاد" class="mx-auto mb-8 w-64 h-64 object-cover rounded-full neon-glow" style="color: var(--neon-green);">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 neon-text" style="color: var(--neon-green);">
+                    چگونه گوسفند نباشیم
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
+                    آزمون interactive برای یادگیری تفکر نقاد و تشخیص اطلاعات معتبر از جعلی
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Quiz Section -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <!-- Progress Bar -->
+                <div class="mb-8 reveal-up">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-semibold">پیشرفت آزمون</span>
+                        <span id="progress-text" class="text-lg font-semibold">۰ از ۵</span>
+                    </div>
+                    <div class="progress-bar h-3">
+                        <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <!-- Quiz Container -->
+                <div id="quiz-container" class="quiz-container p-8 reveal-up">
+                    <div id="question-content">
+                        <!-- Question will be loaded here -->
+                    </div>
+                </div>
+                
+                <!-- Results Section (Hidden initially) -->
+                <div id="results-section" class="quiz-container p-8 reveal-up" style="display: none;">
+                    <div class="text-center">
+                        <h2 class="text-3xl font-bold mb-6 neon-text" style="color: var(--neon-green);">
+                            نتایج آزمون شما
+                        </h2>
+                        <div id="score-display" class="text-6xl font-bold mb-4 neon-text" style="color: var(--bright-pink);">
+                            
+                        </div>
+                        <p class="text-xl mb-8">از ۵ سوال</p>
+                        
+                        <div id="chart-container" class="mb-8">
+                            <!-- Chart will be rendered here -->
+                        </div>
+                        
+                        <div id="feedback-text" class="text-lg mb-8 leading-relaxed">
+                            <!-- Feedback will be shown here -->
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button onclick="restartQuiz()" class="px-8 py-4 bg-transparent border-2 rounded-full text-lg font-semibold neon-glow" style="color: var(--neon-green); border-color: var(--neon-green);">
+                                تکرار آزمون
+                            </button>
+                            <button onclick="shareResults()" class="px-8 py-4 bg-transparent border-2 rounded-full text-lg font-semibold neon-glow" style="color: var(--electric-blue); border-color: var(--electric-blue);">
+                                اشتراک‌گذاری نتایج
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Educational Content Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 reveal-up">
+                <h2 class="text-4xl font-bold mb-6 neon-text" style="color: var(--electric-blue);">
+                    نکات کلیدی تفکر نقاد
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="question-card p-6 reveal-up">
+                    <div class="text-4xl mb-4">🔍</div>
+                    <h3 class="text-xl font-bold mb-3 neon-text" style="color: var(--electric-blue);">
+                        بررسی منبع
+                    </h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        همیشه منبع اطلاعات رو بررسی کنید. آیا منبع معتبره؟ آیا سابقه درستی داره؟ آیا منافع خاصی داره؟
+                    </p>
+                </div>
+                
+                <div class="question-card p-6 reveal-up">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <h3 class="text-xl font-bold mb-3 neon-text" style="color: var(--neon-green);">
+                        تفکر مستقل
+                    </h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        سعی کنید مستقل فکر کنید. از تفکر گله‌ای دوری کنید و نظر خودتون رو بر اساس تحقیق و تحلیل شکل بدید.
+                    </p>
+                </div>
+                
+                <div class="question-card p-6 reveal-up">
+                    <div class="text-4xl mb-4">❓</div>
+                    <h3 class="text-xl font-bold mb-3 neon-text" style="color: var(--bright-pink);">
+                        پرسیدن سوال
+                    </h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        همیشه سوال بپرسید. چرا این خبر منتشر شده؟ چه کسی از انتشارش سود می‌بره؟ آیا منطقیه؟
+                    </p>
+                </div>
+                
+                <div class="question-card p-6 reveal-up">
+                    <div class="text-4xl mb-4">⚖️</div>
+                    <h3 class="text-xl font-bold mb-3 neon-text" style="color: var(--gen-z-yellow);">
+                        بررسی متوازن
+                    </h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        از منابع مختلف اطلاعات بگیرید و دیدگاه‌های مختلف رو بررسی کنید تا تصویری کامل‌تر داشته باشید.
+                    </p>
+                </div>
+                
+                <div class="question-card p-6 reveal-up">
+                    <div class="text-4xl mb-4">⏰</div>
+                    <h3 class="text-xl font-bold mb-3 neon-text" style="color: var(--electric-blue);">
+                        صبر و تحمل
+                    </h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        عجله نکنید. قبل از قضاوت یا اشتراک‌گذاری، صبر کنید و اطلاعات کامل رو جمع‌آوری کنید.
+                    </p>
+                </div>
+                
+                <div class="question-card p-6 reveal-up">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold mb-3 neon-text" style="color: var(--neon-green);">
+                        هدفمند بودن
+                    </h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        هدف از دریافت اطلاعات رو مشخص کنید. آیا برای یادگیریه؟ برای تصمیم‌گیریه؟ یا فقط برای سرگرمی؟
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-2xl font-bold mb-4 neon-text" style="color: var(--gen-z-yellow);">
+                گوسفند یا چوپان
+            </div>
+            <p class="text-gray-400 mb-6">
+                آموزش سواد رسانه‌ای و تفکر نقاد برای نسل جدید
+            </p>
+            <div class="flex justify-center space-x-6 space-x-reverse mb-6">
+                <a href="#" class="text-gray-400 hover:text-neon-green transition-colors">اینستاگرام</a>
+                <a href="#" class="text-gray-400 hover:text-neon-green transition-colors">تلگرام</a>
+                <a href="#" class="text-gray-400 hover:text-neon-green transition-colors">توییتر</a>
+            </div>
+            <div class="text-gray-500 text-sm">
+                © 2024 گوسفند یا چوپان. تمامی حقوق محفوظ است.
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Quiz data
+        const quizQuestions = [
+            {
+                question: "وقتی یه خبر عجیب تو شبکه‌های اجتماعی می‌بینم، اولین کاری که باید بکنم چیه؟",
+                options: [
+                    "فوراً شروع به اشتراک‌گذاری کنم",
+                    "منبع خبر رو بررسی کنم",
+                    "نظر بقیه رو ببینم",
+                    "بی‌تفاوت رد بشم"
+                ],
+                correct: 1,
+                explanation: "بررسی منبع خبر اولین قدم مهمه. باید ببینیم این خبر از کجا اومده و آیا معتبره یا نه."
+            },
+            {
+                question: "چطور می‌تونم تشخیص بدم که یه وب‌سایت خبری معتبره یا نه؟",
+                options: [
+                    "فقط به طراحی سایت نگاه می‌کنم",
+                    "سابقه و منابع سایت رو بررسی می‌کنم",
+                    "هرچی تو اینترنته قبول دارم",
+                    "فقط سایت‌های فارسی رو قبول دارم"
+                ],
+                correct: 1,
+                explanation: "بررسی سابقه، منابع، و اعتبار سایت مهم‌ترین عامل برای تشخیص معتبر بودن اونه."
+            },
+            {
+                question: "وقتی همه دنبال یه ترند می‌رن، بهترین کار چیه؟",
+                options: [
+                    "منم سریع بپیوندم بهشون",
+                    "اول بررسی کنم ببینم چیه",
+                    "کاملاً بی‌تفاوت باشم",
+                    "به بقیه مسخره‌ش کنم"
+                ],
+                correct: 1,
+                explanation: "تفکر نقاد یعنی قبل از پیوستن به هر ترندی، اول اون رو بررسی و تحلیل کنیم."
+            },
+            {
+                question: "چطور می‌تونم از تفکر گله‌ای دوری کنم؟",
+                options: [
+                    "همیشه مخالف نظر بقیه باشم",
+                    "مستقل فکر کنم و تحقیق کنم",
+                    "فقط نظر نزدیکانم رو قبول داشته باشم",
+                    "اصلاً نظر ندم"
+                ],
+                correct: 1,
+                explanation: "تفکر مستقل و تحقیق قبل از تصمیم‌گیری راه‌حل مقابله با تفکر گله‌ایه."
+            },
+            {
+                question: "مهم‌ترین مهارت برای سواد رسانه‌ای چیه؟",
+                options: [
+                    "سرعت خوندن خبرها",
+                    "تشخیص اخبار جعلی از واقعی",
+                    "داشتن اکانت در همه شبکه‌ها",
+                    "بیشترین کامنت گذاشتن"
+                ],
+                correct: 1,
+                explanation: "تشخیص اخبار جعلی از واقعی مهارت اصلی سواد رسانه‌ای در دنیای امروزه."
+            }
+        ];
+        
+        let currentQuestion = 0;
+        let score = 0;
+        let answers = [];
+        
+        // Initialize quiz
+        function initializeQuiz() {
+            showQuestion();
+            initializeScrollReveal();
+        }
+        
+        // Show current question
+        function showQuestion() {
+            if (currentQuestion >= quizQuestions.length) {
+                showResults();
+                return;
+            }
+            
+            const question = quizQuestions[currentQuestion];
+            const questionContent = document.getElementById('question-content');
+            
+            questionContent.innerHTML = `
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold mb-6 neon-text" style="color: var(--electric-blue);">
+                        سوال ${currentQuestion + 1} از ${quizQuestions.length}
+                    </h3>
+                    <p class="text-xl mb-8 leading-relaxed">${question.question}</p>
+                    
+                    <div class="space-y-4">
+                        ${question.options.map((option, index) => `
+                            <button onclick="selectOption(${index})" class="option-button w-full text-right p-4 text-lg">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <button id="next-btn" onclick="nextQuestion()" disabled class="px-8 py-4 bg-gray-600 rounded-full text-lg font-semibold cursor-not-allowed">
+                            ${currentQuestion === quizQuestions.length - 1 ? 'نمایش نتایج' : 'سوال بعدی'}
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            updateProgress();
+        }
+        
+        // Select option
+        function selectOption(optionIndex) {
+            // Remove previous selection
+            document.querySelectorAll('.option-button').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Add selection to clicked option
+            document.querySelectorAll('.option-button')[optionIndex].classList.add('selected');
+            
+            // Store answer
+            answers[currentQuestion] = optionIndex;
+            
+            // Enable next button
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.disabled = false;
+            nextBtn.className = 'px-8 py-4 bg-transparent border-2 rounded-full text-lg font-semibold neon-glow cursor-pointer';
+            nextBtn.style.color = 'var(--neon-green)';
+            nextBtn.style.borderColor = 'var(--neon-green)';
+        }
+        
+        // Next question
+        function nextQuestion() {
+            const selectedAnswer = answers[currentQuestion];
+            const correctAnswer = quizQuestions[currentQuestion].correct;
+            
+            if (selectedAnswer === correctAnswer) {
+                score++;
+            }
+            
+            currentQuestion++;
+            showQuestion();
+        }
+        
+        // Update progress
+        function updateProgress() {
+            const progressText = document.getElementById('progress-text');
+            const progressFill = document.getElementById('progress-fill');
+            
+            progressText.textContent = `${currentQuestion} از ${quizQuestions.length}`;
+            progressFill.style.width = `${(currentQuestion / quizQuestions.length) * 100}%`;
+        }
+        
+        // Show results
+        function showResults() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('results-section').style.display = 'block';
+            
+            const scoreDisplay = document.getElementById('score-display');
+            const feedbackText = document.getElementById('feedback-text');
+            
+            scoreDisplay.textContent = `${score}/${quizQuestions.length}`;
+            
+            let feedback = '';
+            let percentage = (score / quizQuestions.length) * 100;
+            
+            if (percentage >= 80) {
+                feedback = `عالی! شما ${percentage}% پاسخ درست دادید. شما یک تفکر نقاد قوی دارید و می‌تونید به راحتی اطلاعات معتبر رو از جعلی تشخیص بدید.`;
+            } else if (percentage >= 60) {
+                feedback = `خوبه! شما ${percentage}% پاسخ درست دادید. تفکر نقاد شما در حال رشده و با تمرین بیشتر می‌تونید قوی‌ترش کنید.`;
+            } else {
+                feedback = `شما ${percentage}% پاسخ درست دادید. وقتشه که بیشتر روی تفکر نقاد کار کنید. پیشنهاد می‌کنم محتوای آموزشی ما رو دنبال کنید.`;
+            }
+            
+            feedbackText.textContent = feedback;
+            
+            // Create chart
+            createResultsChart();
+        }
+        
+        // Create results chart
+        function createResultsChart() {
+            const chartContainer = document.getElementById('chart-container');
+            const chart = echarts.init(chartContainer);
+            
+            const option = {
+                backgroundColor: 'transparent',
+                textStyle: {
+                    color: '#ffffff'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    borderColor: '#00ff00',
+                    textStyle: {
+                        color: '#ffffff'
+                    }
+                },
+                series: [{
+                    name: 'نتایج آزمون',
+                    type: 'pie',
+                    radius: ['40%', '70%'],
+                    avoidLabelOverlap: false,
+                    itemStyle: {
+                        borderRadius: 10,
+                        borderColor: '#000',
+                        borderWidth: 2
+                    },
+                    label: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        label: {
+                            show: true,
+                            fontSize: '20',
+                            fontWeight: 'bold',
+                            color: '#ffffff'
+                        }
+                    },
+                    labelLine: {
+                        show: false
+                    },
+                    data: [
+                        {
+                            value: score,
+                            name: 'پاسخ درست',
+                            itemStyle: {
+                                color: '#00ff00'
+                            }
+                        },
+                        {
+                            value: quizQuestions.length - score,
+                            name: 'پاسخ نادرست',
+                            itemStyle: {
+                                color: '#ff007f'
+                            }
+                        }
+                    ]
+                }]
+            };
+            
+            chart.setOption(option);
+            
+            // Resize chart on window resize
+            window.addEventListener('resize', function() {
+                chart.resize();
+            });
+        }
+        
+        // Restart quiz
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answers = [];
+            
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('results-section').style.display = 'none';
+            
+            showQuestion();
+        }
+        
+        // Share results
+        function shareResults() {
+            const percentage = Math.round((score / quizQuestions.length) * 100);
+            const text = `من تازگی آزمون "چگونه گوسفند نباشیم" رو دادم و ${percentage}% پاسخ درست دادم! شما هم می‌تونید تست بدید: ${window.location.href}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'نتایج آزمون تفکر نقاد',
+                    text: text
+                });
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('نتایج کپی شد! می‌تونید اون رو به اشتراک بذارید.');
+                });
+            }
+        }
+        
+        // Initialize scroll reveal
+        function initializeScrollReveal() {
+            const revealElements = document.querySelectorAll('.reveal-up');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            revealElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializeQuiz);
+    </script>
+</body>
+</html>

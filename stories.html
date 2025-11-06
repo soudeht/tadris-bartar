@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قصه جوانان رها شده از گله - داستان‌های تفکر مستقل</title>
+    <meta name="description" content="داستان‌های واقعی از جوانانی که یاد گرفتن مستقل فکر کنن و از دسته گوسفندان جدا شدن">
+    
+    <!-- Fonts -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    
+    <!-- Splide CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    
+    <style>
+        :root {
+            --electric-blue: #43a9dd;
+            --neon-green: #00ff00;
+            --bright-pink: #ff007f;
+            --gen-z-yellow: #f7d000;
+            --dark-bg: #0a0a0a;
+            --text-light: #ffffff;
+        }
+        
+        * {
+            font-family: 'Vazir', 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+        
+        .neon-glow {
+            box-shadow: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 60px currentColor;
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+        }
+        
+        .story-card {
+            background: rgba(255, 0, 127, 0.05);
+            border: 1px solid var(--bright-pink);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .story-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 0, 127, 0.3);
+            border-color: var(--gen-z-yellow);
+        }
+        
+        .filter-button {
+            background: rgba(67, 169, 221, 0.1);
+            border: 1px solid var(--electric-blue);
+            border-radius: 25px;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .filter-button:hover,
+        .filter-button.active {
+            background: rgba(0, 255, 0, 0.1);
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+        }
+        
+        .search-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(67, 169, 221, 0.5);
+            border-radius: 25px;
+            padding: 12px 20px;
+            color: var(--text-light);
+            outline: none;
+            width: 100%;
+        }
+        
+        .search-input:focus {
+            border-color: var(--electric-blue);
+            box-shadow: 0 0 15px rgba(67, 169, 221, 0.3);
+        }
+        
+        .modal {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal-content {
+            background: var(--dark-bg);
+            border: 1px solid var(--bright-pink);
+            border-radius: 20px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal-up.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+        
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black bg-opacity-80 backdrop-blur-md border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold neon-text" style="color: var(--gen-z-yellow);">
+                    <a href="index.html">گوسفند یا چوپان</a>
+                </div>
+                <div class="hidden md:flex space-x-8 space-x-reverse">
+                    <a href="index.html" class="text-white hover:text-yellow-400 transition-colors">صفحه اصلی</a>
+                    <a href="how-not-to-be-sheep.html" class="text-white hover:text-yellow-400 transition-colors">چگونه گوسفند نباشیم</a>
+                    <a href="fake-or-real.html" class="text-white hover:text-yellow-400 transition-colors">فیکه یا کیکه</a>
+                    <a href="stories.html" class="text-neon-green border-b-2 border-neon-green">قصه جوانان</a>
+                    <a href="about.html" class="text-white hover:text-yellow-400 transition-colors">درباره ما</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="pt-24 pb-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="reveal-up">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 neon-text" style="color: var(--bright-pink);">
+                    قصه جوانان رها شده از گله
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
+                    داستان‌های واقعی از جوانانی که یاد گرفتن مستقل فکر کنن و از دسته گوسفندان جدا شدن
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Search and Filter Section -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-6 items-center mb-8 reveal-up">
+                    <!-- Search -->
+                    <div class="flex-1">
+                        <input 
+                            type="text" 
+                            id="search-input" 
+                            class="search-input" 
+                            placeholder="جستجوی داستان‌ها..."
+                            onkeyup="filterStories()"
+                        >
+                    </div>
+                    
+                    <!-- Filter Buttons -->
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="filterByCategory('all')" class="filter-button active" data-category="all">
+                            همه
+                        </button>
+                        <button onclick="filterByCategory('student')" class="filter-button" data-category="student">
+                            دانشجو
+                        </button>
+                        <button onclick="filterByCategory('worker')" class="filter-button" data-category="worker">
+                            کارمند
+                        </button>
+                        <button onclick="filterByCategory('teen')" class="filter-button" data-category="teen">
+                            جوان
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stories Grid -->
+    <section class="pb-20">
+        <div class="container mx-auto px-6">
+            <div class="masonry-grid" id="stories-grid">
+                <!-- Stories will be loaded here -->
+            </div>
+            
+            <!-- Add Story Button -->
+            <div class="text-center mt-12 reveal-up">
+                <button onclick="openAddStoryModal()" class="px-8 py-4 bg-transparent border-2 rounded-full text-lg font-semibold neon-glow" style="color: var(--bright-pink); border-color: var(--bright-pink);">
+                    افزودن داستان خودم
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Story Modal -->
+    <div id="story-modal" class="modal fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="modal-content max-w-2xl w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 id="modal-title" class="text-2xl font-bold neon-text" style="color: var(--bright-pink);"></h2>
+                <button onclick="closeStoryModal()" class="text-gray-400 hover:text-white text-2xl">
+                    ×
+                </button>
+            </div>
+            <div id="modal-content" class="text-gray-300 leading-relaxed">
+                <!-- Story content will be loaded here -->
+            </div>
+            <div class="mt-6 flex gap-4">
+                <button onclick="shareStory()" class="px-6 py-2 bg-transparent border rounded" style="color: var(--neon-green); border-color: var(--neon-green);">
+                    اشتراک‌گذاری
+                </button>
+                <button onclick="closeStoryModal()" class="px-6 py-2 bg-gray-700 rounded">
+                    بستن
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Story Modal -->
+    <div id="add-story-modal" class="modal fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="modal-content max-w-2xl w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold neon-text" style="color: var(--bright-pink);">
+                    افزودن داستان جدید
+                </h2>
+                <button onclick="closeAddStoryModal()" class="text-gray-400 hover:text-white text-2xl">
+                    ×
+                </button>
+            </div>
+            
+            <form id="add-story-form" onsubmit="submitStory(event)">
+                <div class="mb-4">
+                    <label class="block text-sm font-semibold mb-2">نام شما:</label>
+                    <input type="text" id="story-name" required class="w-full p-3 bg-gray-800 rounded text-white border-0 focus:outline-none focus:ring-2" style="focus:ring-color: var(--bright-pink);">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-semibold mb-2">سن:</label>
+                    <input type="number" id="story-age" min="15" max="35" required class="w-full p-3 bg-gray-800 rounded text-white border-0 focus:outline-none focus:ring-2" style="focus:ring-color: var(--bright-pink);">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-semibold mb-2">دسته‌بندی:</label>
+                    <select id="story-category" required class="w-full p-3 bg-gray-800 rounded text-white border-0 focus:outline-none focus:ring-2" style="focus:ring-color: var(--bright-pink);">
+                        <option value="">انتخاب کنید...</option>
+                        <option value="student">دانشجو</option>
+                        <option value="worker">کارمند</option>
+                        <option value="teen">جوان</option>
+                    </select>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold mb-2">داستان شما:</label>
+                    <textarea id="story-content" rows="6" required class="w-full p-3 bg-gray-800 rounded text-white border-0 focus:outline-none focus:ring-2 resize-none" style="focus:ring-color: var(--bright-pink);" placeholder="داستان خودتون رو در مورد اینکه چطور یاد گرفتید مستقل فکر کنید بنویسید..."></textarea>
+                </div>
+                
+                <div class="flex gap-4">
+                    <button type="submit" class="flex-1 px-6 py-3 bg-transparent border-2 rounded-full text-lg font-semibold neon-glow" style="color: var(--bright-pink); border-color: var(--bright-pink);">
+                        ارسال داستان
+                    </button>
+                    <button type="button" onclick="closeAddStoryModal()" class="px-6 py-3 bg-gray-700 rounded">
+                        انصراف
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-2xl font-bold mb-4 neon-text" style="color: var(--gen-z-yellow);">
+                گوسفند یا چوپان
+            </div>
+            <p class="text-gray-400 mb-6">
+                آموزش سواد رسانه‌ای و تفکر نقاد برای نسل جدید
+            </p>
+            <div class="flex justify-center space-x-6 space-x-reverse mb-6">
+                <a href="#" class="text-gray-400 hover:text-neon-green transition-colors">اینستاگرام</a>
+                <a href="#" class="text-gray-400 hover:text-neon-green transition-colors">تلگرام</a>
+                <a href="#" class="text-gray-400 hover:text-neon-green transition-colors">توییتر</a>
+            </div>
+            <div class="text-gray-500 text-sm">
+                © 2024 گوسفند یا چوپان. تمامی حقوق محفوظ است.
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Stories data
+        const stories = [
+            {
+                id: 1,
+                name: 'علی',
+                age: 22,
+                category: 'student',
+                title: 'علی: از گوسفند قصه‌پرداز به تحلیل‌گر مستقل',
+                summary: 'فکر می‌کردم همه چیز همون چیزیه که تلویزیون می‌گه، تا اینکه یاد گرفتم خودم تحقیق کنم...',
+                content: `فکر می‌کردم همه چیز همون چیزیه که تلویزیون می‌گه. هر شب اخبار رو تماشا می‌کردم و بدون هیچ سوالی قبول می‌کردم. تا اینکه یه روز یه خبر کاملاً غیرمنطقی دیدم...
+
+                اون خبر درباره کشف موجودات فضایی در ایران بود! اولش باورم شد، چون از تلویزیون پخش می‌شد. ولی بعدش شروع کردم به فکر کردن. این خبر خیلی عجیب بود. چرا هیچ خبرگزاری معتبر خارجی دربارش حرفی نزده؟
+
+                همون شب شروع کردم به تحقیق کردن. تو اینترنت سرچ کردم و فهمیدم که این خبر کاملاً جعلی بوده! از اون روز به بعد تصمیم گرفتم که قبل از قبول هر خبری، اول خودم تحقیق کنم.
+
+                حالا همیشه منابع مختلف رو بررسی می‌کنم، از منابع معتبر داخلی و خارجی استفاده می‌کنم، و قبل از قضاوت، اطلاعات کامل رو جمع‌آوری می‌کنم. اینطوری دیگه گوسفند نیستم، خودم فکر می‌کنم و تصمیم می‌گیرم.`
+            },
+            {
+                id: 2,
+                name: 'سارا',
+                age: 19,
+                category: 'teen',
+                title: 'سارا: از اسیر لایک‌ها به آزاد فکر',
+                summary: 'همیشه دنبال لایک اینستاگرام بودم، ولی gradually فهمیدم که اینا فقط یه بخش کوچیک از واقعیتن...',
+                content: `همیشه دنبال لایک اینستاگرام بودم. هر چیزی که بیشترین لایک رو داشت، فکر می‌کردم درسته. عکس‌های فیلتر شده، سبک زندگی لوکس، نظرات بقیه - همه این‌ها برام مهم بود.
+
+                ولی gradually فهمیدم که اینا فقط یه بخش کوچیک از واقعیتن. شروع کردم به تحقیق درباره الگوریتم‌های شبکه‌های اجتماعی، فهمیدم که چطور این پلتفرم‌ها ما رو به سمتی هدایت می‌کنن که بیشتر وقتمون رو اونجا بگذرونیم.
+
+                مهم‌ترین چیزی که یاد گرفتم این بود که نباید همه چیز رو با تعداد لایک یا کامنت سنجید. واقعیت خیلی پیچیده‌تر از چیزیه که تو شبکه‌های اجتماعی نشون داده می‌شه.
+
+                حالا قبل از اشتراک‌گذاری، حتماً بررسی می‌کنم، منابع مختلف رو می‌خونم، و سعی می‌کنم واقعیت رو بفهمم، نه اون چیزی رو که الگوریتم‌ها می‌خوان بهم نشون بدن.`
+            },
+            {
+                id: 3,
+                name: 'رضا',
+                age: 25,
+                category: 'worker',
+                title: 'رضا: از غرق‌شده در فضای مجازی به کاربر آگاه',
+                summary: 'تو شبکه‌های اجتماعی غرق شده بودم، تا اینکه یاد گرفتم چطور اطلاعات رو بررسی کنم...',
+                content: `تو شبکه‌های اجتماعی غرق شده بودم. از صبح تا شب چک کردن تلگرام، اینستاگرام، توییتر - همه چیز. هر خبری رو که می‌دیدم باور می‌کردم. فکر می‌کردم چون همه دارن دربارش حرف می‌زنن، پس حتماً درسته.
+
+                تا اینکه یه روز متوجه شدم که خیلی از این اطلاعات کاملاً نادرستن. یه خبر رو دیدم که بعداً فهمیدم کاملاً جعلی بوده، ولی همه داشتن اون رو اشتراک می‌کردن.
+
+                شروع کردم به یادگیری چطور اطلاعات رو بررسی کنم. یاد گرفتم چطور منابع رو بررسی کنم، چطور تصاویر رو تحلیل کنم، چطور تاریخ خبر رو چک کنم.
+
+                حالا خیلی بیشتر آگاهم. قبل از قبول هر خبری، اول منبع رو بررسی می‌کنم، از منابع مختلف اطلاعات می‌گیرم، و سعی می‌کنم واقعیت رو بفهمم، نه اون چیزی رو که بقیه می‌گن.`
+            },
+            {
+                id: 4,
+                name: 'مریم',
+                age: 21,
+                category: 'student',
+                title: 'مریم: از پیرو تبلیغات به مصرف‌کننده آگاه',
+                summary: 'هر چیزی رو که تبلیغ می‌کردن می‌خریدم، تا اینکه فهمیدم پشت پرده این تبلیغات چیه...',
+                content: `هر چیزی رو که تبلیغ می‌کردن می‌خریدم. فکر می‌کردم چون اینفلوئنسرها یا سلبریتی‌ها یه محصول رو تبلیغ می‌کنن، پس حتماً بهترینه. همیشه دنبال ترندهای جدید بودم.
+
+                تا اینکه یه روز فهمیدم پشت پرده این تبلیغات چیه. شروع کردم به تحقیق درباره تکنیک‌های تبلیغاتی، فهمیدم که چطور مارکتینگ کار می‌کنه، چطور احساسات ما رو هدف قرار می‌دن.
+
+                مهم‌ترین چیزی که یاد گرفتم این بود که نباید هر چیزی رو که تبلیغ می‌شه، قبول کرد. باید تحقیق کرد، بررسی کرد، و بعد تصمیم گرفت.
+
+                حالا قبل از خرید هر چیزی، اول تحقیق می‌کنم، نظرات مختلف رو می‌خونم، و سعی می‌کنم بهترین انتخاب رو داشته باشم، نه فقط چیزی که تبلیغ شده.`
+            },
+            {
+                id: 5,
+                name: 'حسین',
+                age: 23,
+                category: 'worker',
+                title: 'حسین: از قربانی شایعات به پخش‌کننده حقیقت',
+                summary: 'هر شایعه‌ای رو باور می‌کردم و پخش می‌کردم، تا اینکه یاد گرفتم چطور شایعات رو تشخیص بدم...',
+                content: `هر شایعه‌ای رو که می‌شنیدم، باور می‌کردم و پخش می‌کردم. فکر می‌کردم چون بقیه دارن دربارش حرف می‌زنن، پس حتماً درسته. تو گروه‌های واتساپ، تلگرام، همه جا شایعات رو پخش می‌کردم.
+
+                تا اینکه یه روز یه شایعه‌ای رو پخش کردم که بعداً فهمیدم کاملاً نادرست بوده و باعث نگرانی بی‌مورد شده بود. اون موقع بود که فهمیدم باید چیزی عوض بشه.
+
+                شروع کردم به یادگیری چطور شایعات رو تشخیص بدم. یاد گرفتم چطور منابع رو بررسی کنم، چطور علائم شایعه رو بشناسم، چطور قبل از پخش، صحت اطلاعات رو بررسی کنم.
+
+                حالا دیگه شایعه پخش نمی‌کنم. قبل از پخش هر خبری، اول تحقیق می‌کنم، و اگه مطمئن نیستم، پخش نمی‌کنم. حتی سعی می‌کنم بقیه رو هم از پخش شایعات منع کنم.`
+            },
+            {
+                id: 6,
+                name: 'نازنین',
+                age: 20,
+                category: 'teen',
+                title: 'نازنین: از فریب‌خورده سیاسی به شهروند آگاه',
+                summary: 'هر حرف سیاسی رو قبول می‌کردم، تا اینکه یاد گرفتم چطور تحلیل سیاسی انجام بدم...',
+                content: `هر حرف سیاسی رو که می‌شنیدم، قبول می‌کردم. فکر می‌کردم چون از یه شخصیت سیاسی معروف می‌آد، پس حتماً درسته. بدون هیچ تحقیقی ازش حمایت می‌کردم.
+
+                تا اینکه یاد گرفتم که سیاست خیلی پیچیده‌تر از چیزیه که به نظر می‌رسه. شروع کردم به یادگیری چطور تحلیل سیاسی انجام بدم، چطور منافع مختلف رو بشناسم، چطور قبل از تصمیم‌گیری، اطلاعات کامل رو جمع‌آوری کنم.
+
+                مهم‌ترین چیزی که یاد گرفتم این بود که نباید به ظاهر قانع شد. باید عمق ماجرا رو فهمید، منافع مختلف رو بررسی کرد، و بعد تصمیم گرفت.
+
+                حالا دیگه فریب نمی‌خورم. قبل از قبول هر حرف سیاسی، اول تحقیق می‌کنم، منابع مختلف رو بررسی می‌کنم، و سعی می‌کنم واقعیت رو بفهمم، نه فقط اون چیزی رو که بهم می‌گن.`
+            }
+        ];
+        
+        let filteredStories = [...stories];
+        let currentCategory = 'all';
+        
+        // Initialize page
+        function initializePage() {
+            loadStories();
+            initializeScrollReveal();
+        }
+        
+        // Load stories
+        function loadStories() {
+            const grid = document.getElementById('stories-grid');
+            grid.innerHTML = '';
+            
+            filteredStories.forEach((story, index) => {
+                const storyCard = createStoryCard(story, index);
+                grid.appendChild(storyCard);
+            });
+        }
+        
+        // Create story card
+        function createStoryCard(story, index) {
+            const div = document.createElement('div');
+            div.className = 'masonry-item';
+            div.innerHTML = `
+                <div class="story-card p-6 reveal-up" onclick="openStoryModal(${story.id})" style="animation-delay: ${index * 0.1}s">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-pink-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            ${story.name.charAt(0)}
+                        </div>
+                        <div>
+                            <div class="font-semibold text-lg">${story.name}، ${story.age} ساله</div>
+                            <div class="text-sm text-gray-400">${getCategoryName(story.category)}</div>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 neon-text" style="color: var(--bright-pink);">
+                        ${story.title}
+                    </h3>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        ${story.summary}
+                    </p>
+                    <div class="text-neon-green hover:underline cursor-pointer">
+                        خواندن ادامه →
+                    </div>
+                </div>
+            `;
+            return div;
+        }
+        
+        // Get category name
+        function getCategoryName(category) {
+            const names = {
+                'student': 'دانشجو',
+                'worker': 'کارمند',
+                'teen': 'جوان'
+            };
+            return names[category] || category;
+        }
+        
+        // Filter by category
+        function filterByCategory(category) {
+            currentCategory = category;
+            
+            // Update active button
+            document.querySelectorAll('.filter-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-category="${category}"]`).classList.add('active');
+            
+            // Filter stories
+            if (category === 'all') {
+                filteredStories = [...stories];
+            } else {
+                filteredStories = stories.filter(story => story.category === category);
+            }
+            
+            loadStories();
+        }
+        
+        // Filter stories by search
+        function filterStories() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            
+            let baseStories = currentCategory === 'all' ? stories : stories.filter(story => story.category === currentCategory);
+            
+            if (searchTerm) {
+                filteredStories = baseStories.filter(story => 
+                    story.title.toLowerCase().includes(searchTerm) ||
+                    story.summary.toLowerCase().includes(searchTerm) ||
+                    story.content.toLowerCase().includes(searchTerm)
+                );
+            } else {
+                filteredStories = baseStories;
+            }
+            
+            loadStories();
+        }
+        
+        // Open story modal
+        function openStoryModal(storyId) {
+            const story = stories.find(s => s.id === storyId);
+            if (!story) return;
+            
+            document.getElementById('modal-title').textContent = story.title;
+            document.getElementById('modal-content').innerHTML = `
+                <div class="mb-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 bg-gradient-to-r from-pink-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                            ${story.name.charAt(0)}
+                        </div>
+                        <div>
+                            <div class="font-semibold text-xl">${story.name}، ${story.age} ساله</div>
+                            <div class="text-sm text-gray-400">${getCategoryName(story.category)}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-gray-300 leading-relaxed space-y-4">
+                    ${story.content.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('')}
+                </div>
+            `;
+            
+            document.getElementById('story-modal').classList.remove('hidden');
+            document.getElementById('story-modal').dataset.storyId = storyId;
+        }
+        
+        // Close story modal
+        function closeStoryModal() {
+            document.getElementById('story-modal').classList.add('hidden');
+        }
+        
+        // Share story
+        function shareStory() {
+            const storyId = document.getElementById('story-modal').dataset.storyId;
+            const story = stories.find(s => s.id == storyId);
+            
+            if (story) {
+                const text = `داستان جالب ${story.name} رو در وبسایت "گوسفند یا چوپان" بخونید: ${story.title}`;
+                
+                if (navigator.share) {
+                    navigator.share({
+                        title: story.title,
+                        text: text
+                    });
+                } else {
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert('لینک داستان کپی شد!');
+                    });
+                }
+            }
+        }
+        
+        // Open add story modal
+        function openAddStoryModal() {
+            document.getElementById('add-story-modal').classList.remove('hidden');
+        }
+        
+        // Close add story modal
+        function closeAddStoryModal() {
+            document.getElementById('add-story-modal').classList.add('hidden');
+            document.getElementById('add-story-form').reset();
+        }
+        
+        // Submit story
+        function submitStory(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('story-name').value;
+            const age = document.getElementById('story-age').value;
+            const category = document.getElementById('story-category').value;
+            const content = document.getElementById('story-content').value;
+            
+            // Create new story
+            const newStory = {
+                id: stories.length + 1,
+                name: name,
+                age: parseInt(age),
+                category: category,
+                title: `${name}: داستان تفکر مستقل`,
+                summary: content.substring(0, 100) + '...',
+                content: content
+            };
+            
+            // Add to stories array
+            stories.push(newStory);
+            
+            // Reload stories
+            filterByCategory(currentCategory);
+            
+            // Close modal
+            closeAddStoryModal();
+            
+            // Show success message
+            alert('داستان شما با موفقیت ارسال شد! پس از بررسی، به لیست اضافه خواهد شد.');
+        }
+        
+        // Initialize scroll reveal
+        function initializeScrollReveal() {
+            const revealElements = document.querySelectorAll('.reveal-up');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            revealElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>
